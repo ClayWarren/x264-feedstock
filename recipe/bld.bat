@@ -19,7 +19,8 @@ if errorlevel 1 exit 1
 make -j%CPU_COUNT%
 if errorlevel 1 exit 1
 
-make -j%CPU_COUNT% checkasm
+rem checkasm uses GNU C statement expressions; clang-cl keeps the MSVC ABI.
+make -j%CPU_COUNT% checkasm CC=clang-cl
 if errorlevel 1 exit 1
 
 checkasm8.exe
